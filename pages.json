@@ -1,0 +1,272 @@
+{
+	"pages": [
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/recruitmentConference/recruitmentInfoList",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/main/main",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false,
+				"onReachBottomDistance": 50
+			}
+		},
+		{
+			"path": "pages/login/loginMain",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/privacyClause/privacyClause",
+			"style": {
+				"navigationBarTitleText": "用户协议·隐私条款",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/news/index",
+			"style": {}
+		},
+		{
+			"path": "pages/news/detail",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/ucenter/ucenter",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/resumeDetail/resumeDetail",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/basePerson/basePerson",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/subscribe/subscribe",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/calendar/calendar",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/calendar/calendarDetail/calendarDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/message/message",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/message/interview",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/messenger/messenger",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/myDeliverList/myDeliverList",
+			"style": {
+				"navigationBarTitleText": "简历投递",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/recommend/recommend",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/recommendDetail/recommendDetail",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/ambassadorRanking/ambassadorRanking",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/enterpriseDataDetail/enterpriseDataDetail",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/detail/posterAddress/posterAddress",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/recruitmentConference/talentCenterRecruitmentDetails",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/recruitmentConference/companyRecruitmentDetails",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/expectJob/expectJob",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/recruitmentConference/positionList/positionList",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/recruitmentConference/positionList/recommendPositionListBySpecial",
+			"style": {
+				"navigationBarTitleText": "吴江毕业申",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/home/famousEnterprise",
+			"style": {
+				"navigationBarTitleText": "知名企业",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/videoPlay/videoPlay",
+			"style" : 
+			{
+				"navigationBarTitleText" : "观看视频"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "招聘系统",
+		"navigationBarBackgroundColor": "#34acc3",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#34acc3",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"height": "50px",
+		"fontSize": "10px",
+		"iconWidth": "24px",
+		"spacing": "3px",
+		"list": [
+			{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home_active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/recruitmentConference/recruitmentInfoList",
+				"iconPath": "static/jobmeet.png",
+				"selectedIconPath": "static/jobmeet_active.png",
+				"text": "招聘会"
+			},
+			{
+				"pagePath": "pages/main/main",
+				"iconPath": "static/job1.png",
+				"selectedIconPath": "static/job1_active.png",
+				"text": "找工作"
+			},
+
+			// {
+			// 	"pagePath": "pages/ucenter/message/message",
+			// 	"iconPath": "static/message.png",
+			// 	"selectedIconPath": "static/message-active.png",
+			// 	"text": "消息"
+			// },
+			{
+				"pagePath": "pages/ucenter/ucenter",
+				"iconPath": "static/mine.png",
+				"selectedIconPath": "static/mine_active.png",
+				"text": "我的"
+			}
+		]
+	},
+	"rightWindow": {
+		"path": "responsive/right-window.vue",
+		"style": {
+			"width": "calc(100vw - 450px)"
+		},
+		"matchMedia": {
+			"minWidth": 768
+		}
+	}
+}

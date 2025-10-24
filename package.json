@@ -1,0 +1,22 @@
+{
+    "id": "wjhr.bys.mp",
+    "name": "吴江毕业申小程序",
+    "version": "1.1.0",
+    "description": "基于uni-app开发的吴江毕业申小程序",
+    "keywords": [
+        "吴江人才市场",
+        "招聘",
+        "校园",
+        "求职",
+        "找工作"
+    ],
+    "dcloudext": {
+        "category": [
+            "uni-app前端模板",
+            "uni-app前端项目"
+        ]
+    },
+    "dependencies": {
+        "saas": "^1.0.0"
+    }
+}

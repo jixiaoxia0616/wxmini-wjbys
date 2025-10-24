@@ -1,0 +1,378 @@
+<template>
+	<view class="center">
+		<view class="logo" @click="goLogin" :hover-class="!login ? 'logo-hover' : ''">
+<!--			<image class="logo-img" :src="login ? userInfo.avatarUrl :avatarUrl"></image> -->
+			<view class="logo-title">
+				<view style="height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+					<view style="display: flex; flex-direction: row;">
+						<text class="uer-name">你好，{{login && userInfo ? userInfo.name : '您未登录'}}</text>
+						<text class="uer-name-right"
+							v-if="campusAmbassador && campusAmbassador.id">(积分:{{campusAmbassador.integralValue || 0}})</text>
+					</view>
+
+					<text class="navigat-arrow"
+						v-if="campusAmbassador && campusAmbassador.enterpriseName">{{campusAmbassador.enterpriseName}}</text>
+				</view>
+				<!-- <view class="go-login-navigat-arrow" v-if="campusAmbassador && campusAmbassador.id">
+					<text class="navigat-arrow">积分 : {{campusAmbassador.integralValue || 0}}</text>
+				</view> -->
+			</view>
+		</view>
+
+		<view class="ucenter-card">
+			<uni-grid :column="4" :showBorder="false">
+				<uni-grid-item>
+					<view class="grid-item-box" @click="openMenu(0)">
+						<uni-icons type="person-filled" :size="30" :color="uniColorPrimary" />
+						<text class="grid-item-box-text">个人信息</text>
+					</view>
+				</uni-grid-item>
+				<uni-grid-item>
+					<view class="grid-item-box" @click="openMenu(1)">
+						<uni-icons type="compose" :size="30" :color="uniColorPrimary" />
+						<text class="grid-item-box-text">教育经历</text>
+					</view>
+				</uni-grid-item>
+				<uni-grid-item>
+					<view class="grid-item-box" @click="openMenu(4)">
+						<uni-icons type="cloud-download-filled" :size="30" :color="uniColorPrimary" />
+						<text class="grid-item-box-text">我的订阅</text>
+					</view>
+				</uni-grid-item>
+				<uni-grid-item>
+					<view class="grid-item-box" @click="openMenu(6)">
+						<uni-icons type="paperplane-filled" :size="30" :color="uniColorPrimary" />
+						<text class="grid-item-box-text">简历投递</text>
+					</view>
+				</uni-grid-item>
+
+			</uni-grid>
+		</view>
+
+		<view class="center-list">
+			<view class="center-list-item" v-if="userInfo.campusAmbassadorStatus != '2'" @click="openMenu(2)">
+				<text class="list-icon">&#xe734;</text>
+				<text class="list-text">申请校园大使</text>
+				<text class="list-item-navigat-arrow">&#xe63c;</text>
+			</view>
+			<view class="center-list-item" v-if="userInfo.campusAmbassadorStatus == '2'" @click="openMenu(3)">
+				<text class="list-icon">&#xe600;</text>
+				<text class="list-text">校园大使</text>
+				<text class="list-item-navigat-arrow">&#xe63c;</text>
+			</view>
+			<view class="center-list-item" v-if="userInfo.campusAmbassadorStatus == '2'" @click="openMenu(7)">
+				<text class="list-icon">&#xe701;</text>
+				<text class="list-text">我推荐过的职位</text>
+				<text class="list-item-navigat-arrow">&#xe63c;</text>
+			</view>
+			<view class="center-list-item" v-if="userInfo.campusAmbassadorStatus == '2'" @click="openMenu(8)">
+				<text class="list-icon">&#xe60c;</text>
+				<text class="list-text">校园大使排名</text>
+				<text class="list-item-navigat-arrow">&#xe63c;</text>
+			</view>
+			<view class="center-list-item" @click="openMenu(9)">
+				<text class="list-icon">&#xe701;</text>
+				<text class="list-text">消息</text>
+				<text class="list-item-navigat-arrow">&#xe63c;</text>
+			</view>
+		</view>
+
+		<view class="time-out-btn">
+			<button style="font-size: 30rpx;" @click="studentOutLogin()">退出登录</button>
+		</view>
+	</view>
+</template>
+
+<script>
+	import {
+		studentOut
+	} from '@/apis/api.js'
+	export default {
+		data() {
+			return {
+				login: false,
+				avatarUrl: '/static/logo.png',
+				campusAmbassador: null,
+				userInfo: {},
+				uniColorPrimary: "#34acc3"
+			}
+		},
+		onLoad() {
+			wx.showShareMenu({
+				withShareTicket: true,
+				menus: ["shareAppMessage", "shareTimeline"]
+			})
+		},
+		onShow: function() {
+			// this.getWxUser()
+			if (getApp().globalData && getApp().globalData.wxUser && getApp().globalData.wxUser.openid) {
+				this.getWxUser()
+			} else {
+				getApp().watch(this.getWxUser, 'wxUser')
+			}
+
+		},
+		methods: {
+			getWxUser() {
+				let wxUser = getApp().globalData.wxUser
+				if (wxUser && wxUser.openid) {
+					this.login = true
+					this.userInfo.avatarUrl = wxUser.avatarUrl
+					this.userInfo.name = wxUser.studentName
+					this.userInfo.campusAmbassadorStatus = wxUser.campusAmbassadorStatus
+					this.campusAmbassador = wxUser.campusAmbassador
+				}
+			},
+			goLogin() {
+				getApp().isLogin()
+			},
+			async studentOutLogin() {
+				if (!getApp().isLogin()) {
+					return
+				}
+				let wxUser = getApp().globalData.wxUser
+				let res = await studentOut({
+					openid: wxUser.openid
+				})
+				if (res && res.code == 200) {
+					getApp().globalData.isLogin = false
+					getApp().globalData.wxUser = null
+					uni.reLaunch({
+						url: '/pages/login/loginMain'
+					})
+				}
+				console.log('res', res)
+
+			},
+			openMenu(type) {
+				if (!getApp().isLogin()) {
+					return
+				}
+				if (type == 0 || type == 1) {
+					uni.navigateTo({
+						url: '/pages/ucenter/basePerson/basePerson?type=' + type
+					})
+				} else if (type == 2 || type == 3) {
+					uni.navigateTo({
+						url: '/pages/ucenter/messenger/messenger'
+					})
+				} else if (type == 4) {
+					uni.navigateTo({
+						url: '/pages/ucenter/subscribe/subscribe'
+					})
+				} else if (type == 5) {
+					uni.navigateTo({
+						url: '/pages/ucenter/message/message'
+					})
+				} else if (type == 6) {
+					uni.navigateTo({
+						url: '/pages/myDeliverList/myDeliverList'
+					})
+				} else if (type == 7) {
+					uni.navigateTo({
+						url: '/pages/ucenter/recommend/recommend'
+					})
+				} else if (type == 8) {
+					uni.navigateTo({
+						url: '/pages/ucenter/ambassadorRanking/ambassadorRanking'
+					})
+				}else if(type == 9){
+					uni.navigateTo({
+						url:'/pages/ucenter/message/message'
+					})
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	/* #ifndef APP-PLUS-NVUE */
+	@font-face {
+		font-family: 'iconfont';
+		/* Project id 3435416 */
+		src: url('//at.alicdn.com/t/font_3435416_ul2cisykxre.woff2?t=1653735004104') format('woff2'),
+			url('//at.alicdn.com/t/font_3435416_ul2cisykxre.woff?t=1653735004104') format('woff'),
+			url('//at.alicdn.com/t/font_3435416_ul2cisykxre.ttf?t=1653735004104') format('truetype');
+	}
+
+	page {
+		background-color: $uni-bg-color-grey;
+	}
+
+	/* #endif*/
+
+	/* 解决头条小程序字体图标不显示问题，因为头条运行时自动插入了span标签，且有全局字体 */
+	/* #ifdef MP-TOUTIAO */
+	text :not(view) {
+		font-family: texticons;
+	}
+
+	/* #endif */
+
+	.center {
+		flex: 1;
+		position: relative;
+		flex-direction: column;
+		background-color: $uni-bg-color;
+		height: 100vh;
+	}
+
+	.ucenter-card {
+		position: absolute;
+		top: 240rpx;
+		width: 700rpx;
+		height: 180rpx;
+		margin-left: 25rpx;
+		border-radius: 30rpx;
+		border: 1px solid #ebeef5;
+		background-color: #fff;
+		overflow: hidden;
+		color: #303133;
+		transition: .3s;
+	}
+
+	.logo {
+		width: 750upx;
+		height: 340upx;
+		padding: 40upx 20upx 20upx 20upx;
+		background-color: $uni-color-primary;
+		flex-direction: row;
+		border-bottom-left-radius: 350rpx 40rpx;
+		border-bottom-right-radius: 350rpx 40rpx;
+	}
+
+	.logo-hover {
+		opacity: 0.8;
+	}
+
+	.logo-img {
+		width: 150upx;
+		height: 150upx;
+		border-radius: 150upx;
+	}
+
+	.logo-title {
+		height: 150upx;
+		flex: 1;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		margin-left: 20upx;
+	}
+
+	.uer-name {
+		height: 60upx;
+		line-height: 60upx;
+		font-size: 38upx;
+		color: $uni-bg-color;
+		white-space: nowrap;
+		max-width: 400rpx;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.uer-name-right {
+		height: 60upx;
+		line-height: 60upx;
+		font-size: 30rpx;
+		color: $uni-bg-color;
+		margin-left: 20rpx;
+	}
+
+	.go-login-navigat-arrow {
+		font-size: 38upx;
+		color: $uni-bg-color;
+		margin-top: 100rpx;
+	}
+
+	.login-title {
+		height: 150upx;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-left: 20upx;
+	}
+
+	.center-list {
+		flex-direction: column;
+		background-color: $uni-bg-color;
+		margin-top: 100upx;
+		width: 750upx;
+	}
+
+	.center-list-item {
+		height: 90upx;
+		width: 750upx;
+		flex-direction: row;
+		padding: 0upx 20upx;
+		/* border-color: #c8c7cc; */
+		/* border-bottom-style: solid; */
+		/* border-bottom-width: 1upx; */
+	}
+
+	.border-bottom {
+		border-bottom-width: 1upx;
+		border-color: #c8c7cc;
+		border-bottom-style: solid;
+	}
+
+	.list-icon {
+		width: 50upx;
+		height: 90upx;
+		line-height: 90upx;
+		font-size: 40upx;
+		color: $uni-color-primary;
+		text-align: center;
+		font-family: "iconfont" !important;
+		margin-right: 20upx;
+	}
+
+	.list-text {
+		height: 90upx;
+		line-height: 90upx;
+		font-size: 34upx;
+		color: #555;
+		flex: 1;
+	}
+
+	.list-item-navigat-arrow {
+		font-size: 40upx;
+		color: $uni-color-primary;
+		text-align: left;
+		height: 90upx;
+		line-height: 90upx;
+		font-family: "iconfont" !important;
+	}
+
+	.navigat-arrow {
+		/* height: 90upx; */
+		/* line-height: 90upx; */
+		font-size: 28upx;
+		color: #fff;
+		text-align: left;
+		white-space: nowrap;
+		max-width: 500rpx;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.grid-item-box {
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	.grid-item-box-text {
+		color: #555;
+	}
+
+	.time-out-btn {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
+</style>
