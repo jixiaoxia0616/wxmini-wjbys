@@ -1,5 +1,15 @@
 {
 	"pages": [
+		// {
+		// 	"path" : "pages/SuXin/index/index",
+		// 	"style" : 
+		// 	{
+		// 		"navigationBarTitleText" : "",
+		// 		"navigationBarBackgroundColor": "#0A96FF",
+		// 		"enablePullDownRefresh": false, 
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
 		{
 			"path": "pages/home/index",
 			"style": {
