@@ -57,7 +57,7 @@
 
 <script>
 	import {
-		getEnterprisePostList,
+		getSuxinEnterprisePostList,
 		saveStudent
 	} from '@/apis/api.js'
 	import {
@@ -231,7 +231,7 @@
 					params.studentId = wxUser.id
 				}
 
-				let res = await getEnterprisePostList(params)
+				let res = await getSuxinEnterprisePostList(params)
 				if (res && res.data && res.data.code == 200) {
 					this.tableList = this.tableList.concat(res.data.rows || [])
 					total = res.data.total || []
@@ -244,6 +244,20 @@
 				} else {
 					this.more = 'more'
 				}
+			}
+		},
+		onShareAppMessage() {
+			return {
+				title: '苏信就业平台',
+				path: '/pages/SuXin/index/index',
+				imageUrl: this.bannerUrl
+			}
+		},
+		onShareTimeline() {
+			return {
+				title: '苏信就业平台',
+				path: '/pages/SuXin/index/index',
+				imageUrl: this.bannerUrl
 			}
 		}
 	}

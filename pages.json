@@ -1,20 +1,21 @@
 {
 	"pages": [
-		// {
-		// 	"path" : "pages/SuXin/index/index",
-		// 	"style" : 
-		// 	{
-		// 		"navigationBarTitleText" : "",
-		// 		"navigationBarBackgroundColor": "#0A96FF",
-		// 		"enablePullDownRefresh": false, 
-		// 		"navigationStyle": "custom"
-		// 	}
-		// },
+		
 		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "吴江毕业申",
 				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/SuXin/index/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"navigationBarBackgroundColor": "#0A96FF",
+				"enablePullDownRefresh": false, 
+				"navigationStyle": "custom"
 			}
 		},
 		{

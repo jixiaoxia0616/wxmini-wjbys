@@ -1,5 +1,7 @@
 
 export const baseUrl = 'https://bys.wjhr.net/prod-api'
+// export const baseUrl = 'http://localhost:8080'
+
 // get请求
 export function get(url, data) {
 	return new Promise((resolve, reject) => {

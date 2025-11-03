@@ -125,6 +125,17 @@ export async function getEnterprisePostList(data) {
   return null
 }
 
+// 岗位列表查询-----苏信就业页面
+export async function getSuxinEnterprisePostList(data) {
+  try {
+    let res = await get('/system/student/enterprise/post/suxinlist', data)
+    return res
+  } catch (err) {
+    console.log('岗位列表查询错误', err)
+  }
+  return null
+}
+
 // 教育经历查询
 export async function getEducationList(data) {
   try {
